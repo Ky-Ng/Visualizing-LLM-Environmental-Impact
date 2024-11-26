@@ -1,4 +1,5 @@
 "use client"
+import { Box, Button, FormControl, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
 import { Message } from 'ai'
 import { useChat } from 'ai/react'
 
@@ -28,7 +29,6 @@ export default function ChatView({ }: Props) {
 
     return (
         <div>
-            <p>Chat View Component</p>
             <p>Total Chat Length in words: {calculateLength(messages)}</p>
             {messages.map((m: Message) => {
                 return (
@@ -38,9 +38,25 @@ export default function ChatView({ }: Props) {
                     </div>
                 )
             })}
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={input} placeholder='What is the environmental impact of LLMs...' onChange={handleInputChange} />
-            </form>
+
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                height: '100vh',
+                padding: '20px',
+                gap: "10px"
+            }}>
+                <TextField
+                    id="outlined-multiline-static"
+                    // multiline
+                    rows={1}
+                    value={input}
+                    onChange={handleInputChange}
+                    fullWidth
+                />
+                <Button fullWidth variant="contained" onClick={handleSubmit}>Submit to LLM</Button>
+            </Box>
         </div>
     )
 }

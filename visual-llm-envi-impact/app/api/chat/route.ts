@@ -5,7 +5,6 @@ dotenv.config()
 const myCohere = createCohere({
     apiKey: process.env.COHERE_API_KEY
 })
-console.log("APIKEY", process.env.COHERE_API_KEY)
 
 export async function POST(request: Request) {
     const payload = await request.json()
